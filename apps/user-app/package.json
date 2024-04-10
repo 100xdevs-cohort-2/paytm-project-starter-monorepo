@@ -9,6 +9,7 @@
     "lint": "eslint . --max-warnings 0"
   },
   "dependencies": {
+    "@repo/db" : "*",
     "@repo/store": "*",
     "@repo/ui": "*",
     "@types/bcrypt": "^5.0.2",
