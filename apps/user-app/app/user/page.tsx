@@ -26,6 +26,7 @@
         </div>
       </div>
       <h1>{session.status}</h1>
+      hii there
       <h1>{session.data ? `Hello ${session.data.user}` : 'You are not logged in'}</h1>
 
       {JSON.stringify(session)}
