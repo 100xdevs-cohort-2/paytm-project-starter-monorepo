@@ -3,8 +3,12 @@ import prisma from "@repo/db/client";
 import nextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials"
 
+interface Credentials {
+    email : string
+    password : string
+}
 
-export const handle = nextAuth({
+const handler = nextAuth({
     providers: [
       CredentialsProvider({
           name: 'Credentials',
@@ -14,9 +18,10 @@ export const handle = nextAuth({
           },
           // TODO: User credentials type from next-aut
         //   @ts-ignore
-          async authorize(credentials: any) {
+          async authorize(credentials:Credentials) : Promise<{email : string} | null> {
+            console.log(credentials);
             // Do zod validation, OTP validation here
-            const existingUser = await prisma.user.findUnique({
+            const existingUser = await prisma.user.findFirst({
                 where: {
                     email: credentials.email,
                     password : credentials.password
@@ -24,10 +29,12 @@ export const handle = nextAuth({
             });
 
             if (existingUser) {
+
                     return {
                         email: existingUser.email
                     }
                 }
+
             try {
                 const user = await prisma.user.create({
                     data: {
@@ -45,13 +52,7 @@ export const handle = nextAuth({
           },
         })
     ],
-    secret: process.env.NEXTAUTH_SECRET || "saurabh41",
-    callbacks: {
-        // TODO: can u fix the type here? Using any is bad
-        async session({ token, session }: any) {
-            return session
-        }
-    }
+    secret: process.env.NEXTAUTH_SECRET || "saurabh412",
   })
 
-  export { handle as GET, handle as POST}
+  export { handler as GET, handler as POST}
