@@ -17,7 +17,7 @@
     const session = useSession()
    return(
     <>
-      <div className="bg-green-500 flex flex-row justify-between">
+      <div className="bg-green-400 flex flex-row justify-between">
         <div>
           <button onClick={()=>signIn()}>Signin</button>
         </div>
