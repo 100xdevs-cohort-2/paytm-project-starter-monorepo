@@ -25,6 +25,7 @@
           <button onClick={()=>signOut()}>Log Out</button>
         </div>
       </div>
+      <h1>{session.status}</h1>
       <h1>{session.data ? `Hello ${session.data.user}` : 'You are not logged in'}</h1>
 
       {JSON.stringify(session)}
