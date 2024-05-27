@@ -1,0 +1,19 @@
+{
+  "extends": "@repo/typescript-config/base.json",
+  "compilerOptions": {
+    "outDir": "dist"
+  },
+  "include": [
+    "src"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ],
+  "dependencies": {
+    "@repo/db": "*",
+    "@types/express": "^4.17.21",
+    "esbuild": "^0.21.4",
+    "express": "^4.19.2"
+  }
+}
